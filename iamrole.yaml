@@ -1,0 +1,22 @@
+apiVersion: eksctl.io/v1alpha5
+kind: ClusterConfig
+
+metadata:
+  name: yippy-clust
+  region: us-east-1
+
+iam:
+  withOIDC: true
+  serviceAccounts:
+  - metadata:
+      name: s3-reader
+      # if no namespace is set, "default" will be used;
+      # the namespace will be created if it doesn't exist already
+      namespace: default
+      labels: {aws-usage: "nginxdes"}
+    attachPolicyARNs:
+    - "arn:aws:iam::aws:policy/AmazonS3ReadOnlyAccess"
+
+    
+
+

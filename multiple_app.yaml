@@ -1,0 +1,49 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  labels:
+    run: apache-app
+  name: prod-a
+  namespace: default
+spec:
+  replicas: 2
+  selector:
+    matchLabels:
+      Product: ProdA
+  template:
+    metadata:
+      labels:
+        Product: ProdA
+    spec:
+      containers:
+      - image: httpd
+        imagePullPolicy: Always
+        name: apache-app
+        ports:
+        - containerPort: 80
+          protocol: TCP
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  labels:
+    run: nginx-app
+  name: prod-b
+  namespace: default
+spec:
+  replicas: 2
+  selector:
+    matchLabels:
+      Product: ProdB
+  template:
+    metadata:
+      labels:
+        Product: ProdB
+    spec:
+      containers:
+      - image: nginx
+        imagePullPolicy: Always
+        name: ngix-app
+        ports:
+        - containerPort: 80
+          protocol: TCP

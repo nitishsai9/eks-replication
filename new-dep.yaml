@@ -1,0 +1,21 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: nginx-deployment
+  labels:
+    app: nginxdes
+spec:
+  replicas: 3
+  selector:
+    matchLabels:
+      app: nginxdes
+  template:
+    metadata:
+      labels:
+        app: nginxdes
+    spec:
+      serviceAccountName: iam-test
+      containers:
+      - name: nginxdes
+        image: 
+      
