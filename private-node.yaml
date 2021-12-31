@@ -1,0 +1,17 @@
+# A simple example of ClusterConfig object with two nodegroups:
+---
+apiVersion: eksctl.io/v1alpha5
+kind: ClusterConfig
+
+metadata:
+  name: yippy-clust
+  region: ap-south-1
+
+nodeGroups:
+  - name: new-subnet-nodegroup
+    instanceType: m5.large
+    desiredCapacity: 2
+    subnets:
+      - subnet-ddd
+      - subnet-rr
+    privateNetworking: true
